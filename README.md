@@ -29,10 +29,10 @@ Add a new disk to your `filesystems.php` config
 ```php
 'gcs' => [
     'driver' => 'gcs',
-    'project_id' => 'your-project-id',
-    'key_file' => null, // optional: /path/to/service-account.json
-    'bucket' => 'your-bucket',
-    'path_prefix' => null, // optional: /default/path/to/apply/in/bucket
+    'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'your-project-id'),
+    'key_file' => env('GOOGLE_CLOUD_KEY_FILE', null), // optional: /path/to/service-account.json
+    'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'your-bucket'),
+    'path_prefix' => env('GOOGLE_CLOUD_STORAGE_PATH_PREFIX', null), // optional: /default/path/to/apply/in/bucket
 ],
 ```
 

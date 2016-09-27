@@ -1,0 +1,27 @@
+{
+  "name": "superbalist/laravel-google-cloud-storage",
+  "description": "A Google Cloud Storage filesystem for Laravel",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Superbalist.com a division of Takealot Online (Pty) Ltd",
+      "email": "info@superbalist.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "illuminate/support": "^5.3",
+    "superbalist/flysystem-google-storage": "^3.0",
+    "illuminate/filesystem": "^5.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Superbalist\\LaravelGoogleCloudStorage\\": "src/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}

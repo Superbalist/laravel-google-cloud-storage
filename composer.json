@@ -9,7 +9,7 @@
     }
   ],
   "require": {
-    "php": ">=5.5.0",
+    "php": ">=5.6.4",
     "illuminate/support": "^5.3",
     "superbalist/flysystem-google-storage": "^3.0",
     "illuminate/filesystem": "^5.3"

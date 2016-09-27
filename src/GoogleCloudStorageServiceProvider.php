@@ -23,8 +23,9 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
             ]);
             $bucket = $storageClient->bucket($config['bucket']);
             $pathPrefix = array_get($config, 'path_prefix');
+            $storageApiUri = array_get($config, 'storage_api_uri');
 
-            $adapter = new GoogleStorageAdapter($storageClient, $bucket, $pathPrefix);
+            $adapter = new GoogleStorageAdapter($storageClient, $bucket, $pathPrefix, $storageApiUri);
 
             return new Filesystem($adapter);
         });

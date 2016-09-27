@@ -3,9 +3,9 @@
 namespace Superbalist\LaravelGoogleCloudStorage;
 
 use Google\Cloud\Storage\StorageClient;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Filesystem\FilesystemManager;
 use Illuminate\Support\ServiceProvider;
+use League\Flysystem\Filesystem;
 use Superbalist\Flysystem\GoogleStorage\GoogleStorageAdapter;
 
 class GoogleCloudStorageServiceProvider extends ServiceProvider

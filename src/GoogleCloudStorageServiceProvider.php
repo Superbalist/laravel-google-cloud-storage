@@ -15,7 +15,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $factory = $this->app->make('filesystem'); /** @var FilesystemManager $factory */
+        $factory = $this->app->make('filesystem'); /* @var FilesystemManager $factory */
         $factory->extend('gcs', function ($app, $config) {
             $storageClient = new StorageClient([
                 'projectId' => $config['project_id'],
@@ -29,7 +29,6 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
 
             return new Filesystem($adapter);
         });
-
     }
 
     /**

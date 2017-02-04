@@ -59,21 +59,21 @@ The adapter implements a `getUrl($path)` method which returns a public url to a 
 
 ```php
 $disk = Storage::disk('gcs');
-$url = $disk->getUrl('folder/my_file.txt');
+$url = $disk->url('folder/my_file.txt');
 >>> http://storage.googleapis.com/bucket-name/folder/my_file.txt
 ```
 
 If you configure a `path_prefix` in your config:
 ```php
 $disk = Storage::disk('gcs');
-$url = $disk->getUrl('folder/my_file.txt');
+$url = $disk->url('folder/my_file.txt');
 >>> http://storage.googleapis.com/bucket-name/path-prefix/folder/my_file.txt
 ```
 
 If you configure a custom `storage_api_uri` in your config:
 ```php
 $disk = Storage::disk('gcs');
-$url = $disk->getUrl('folder/my_file.txt');
+$url = $disk->url('folder/my_file.txt');
 >>> http://your-custom-domain.com/bucket-name/path-prefix/folder/my_file.txt
 ```
 
@@ -102,7 +102,7 @@ $disk->copy('old/file1.jpg', 'new/file1.jpg');
 $disk->move('old/file1.jpg', 'new/file1.jpg');
 
 // get url to file
-$url = $disk->getUrl('folder/my_file.txt');
+$url = $disk->url('folder/my_file.txt');
 
 // see https://laravel.com/docs/5.3/filesystem for full list of available functionality
 ```

@@ -34,7 +34,7 @@ Add a new disk to your `filesystems.php` config
     'key_file' => env('GOOGLE_CLOUD_KEY_FILE', null), // optional: /path/to/service-account.json
     'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'your-bucket'),
     'path_prefix' => env('GOOGLE_CLOUD_STORAGE_PATH_PREFIX', null), // optional: /default/path/to/apply/in/bucket
-    'storage_api_uri' => env('GOOGLE_CLOUD_STORAGE_API_URI', null),
+    'storage_api_uri' => env('GOOGLE_CLOUD_STORAGE_API_URI', null), // see: Public URLs below
 ],
 ```
 
@@ -53,6 +53,34 @@ The Google Client uses a few methods to determine how it should authenticate wit
 
 4. If running in **Google App Engine**, the built-in service account associated with the application will be used.
 5. If running in **Google Compute Engine**, the built-in service account associated with the virtual machine instance will be used.
+
+### Public URLs
+
+The adapter implements a `getUrl($path)` method which returns a public url to a file.
+
+```php
+$disk = Storage::disk('gcs');
+$url = $disk->url('folder/my_file.txt');
+>>> http://storage.googleapis.com/bucket-name/folder/my_file.txt
+```
+
+If you configure a `path_prefix` in your config:
+```php
+$disk = Storage::disk('gcs');
+$url = $disk->url('folder/my_file.txt');
+>>> http://storage.googleapis.com/bucket-name/path-prefix/folder/my_file.txt
+```
+
+If you configure a custom `storage_api_uri` in your config:
+```php
+$disk = Storage::disk('gcs');
+$url = $disk->url('folder/my_file.txt');
+>>> http://your-custom-domain.com/bucket-name/path-prefix/folder/my_file.txt
+```
+
+For a custom domain (storage api uri), you will need to configure a CNAME DNS entry pointing to `storage.googleapis.com`.
+
+Please see https://cloud.google.com/storage/docs/xml-api/reference-uris#cname for further instructions.
 
 ## Usage
 
@@ -74,5 +102,8 @@ $disk->copy('old/file1.jpg', 'new/file1.jpg');
 // move a file
 $disk->move('old/file1.jpg', 'new/file1.jpg');
 
-// see https://laravel.com/docs/5.1/filesystem for full list of available functionality
+// get url to file
+$url = $disk->url('folder/my_file.txt');
+
+// see https://laravel.com/docs/5.3/filesystem for full list of available functionality
 ```

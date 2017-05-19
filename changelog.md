@@ -1,10 +1,10 @@
 # Changelog
 
-## 1.0.4 - 2017-01-19
+## 1.0.4 - 2017-05-19
 
 * Allow for superbalist/flysystem-google-storage ^5.0
 
-## 1.0.3 - 2017-01-19
+## 1.0.3 - 2017-05-19
 
 * Add support for Laravel 5.1 (@jbaron-mx)
 

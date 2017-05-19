@@ -57,6 +57,7 @@ The Google Client uses a few methods to determine how it should authenticate wit
 ### Public URLs
 
 The adapter implements a `getUrl($path)` method which returns a public url to a file.
+>**Note:** Method available for Laravel 5.2 and higher. If used on 5.1, it will throw an exception.
 
 ```php
 $disk = Storage::disk('gcs');
@@ -105,5 +106,5 @@ $disk->move('old/file1.jpg', 'new/file1.jpg');
 // get url to file
 $url = $disk->url('folder/my_file.txt');
 
-// see https://laravel.com/docs/5.3/filesystem for full list of available functionality
+// See https://laravel.com/docs/5.3/filesystem for full list of available functionality
 ```

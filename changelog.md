@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.5 - 2018-02-02
+
+* Allow superbalist/flysystem-google-storage ^6.0
+
 ## 1.0.4 - 2017-05-19
 
 * Allow for superbalist/flysystem-google-storage ^5.0

@@ -11,7 +11,7 @@
   "require": {
     "php": ">=5.5.9",
     "illuminate/support": "^5.1|^5.2|^5.3",
-    "superbalist/flysystem-google-storage": ">=3.0 <7.0",
+    "superbalist/flysystem-google-storage": ">=3.0 <8.0",
     "illuminate/filesystem": "^5.1|^5.2|^5.3"
   },
   "autoload": {

@@ -106,5 +106,9 @@ $disk->move('old/file1.jpg', 'new/file1.jpg');
 // get url to file
 $url = $disk->url('folder/my_file.txt');
 
+// Set the visibility of file to public
+$disk->setVisibility('folder/my_file.txt', 'public');
+
+
 // See https://laravel.com/docs/5.3/filesystem for full list of available functionality
 ```

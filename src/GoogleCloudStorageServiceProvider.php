@@ -4,12 +4,35 @@ namespace Superbalist\LaravelGoogleCloudStorage;
 
 use Google\Cloud\Storage\StorageClient;
 use Illuminate\Filesystem\FilesystemManager;
+use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
+use League\Flysystem\AdapterInterface;
+use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Filesystem;
 use Superbalist\Flysystem\GoogleStorage\GoogleStorageAdapter;
 
 class GoogleCloudStorageServiceProvider extends ServiceProvider
 {
+    /**
+     * Create a Filesystem instance with the given adapter.
+     *
+     * @param  \League\Flysystem\AdapterInterface  $adapter
+     * @param  array  $config
+     * @return \League\Flysystem\FlysystemInterfaceAdapterInterface
+     */
+    protected function createFilesystem(AdapterInterface $adapter, array $config)
+    {
+        $cache = Arr::pull($config, 'cache');
+
+        $config = Arr::only($config, ['visibility', 'disable_asserts', 'url']);
+
+        if ($cache) {
+            $adapter = new CachedAdapter($adapter, $this->createCacheStore($cache));
+        }
+
+        return new Filesystem($adapter, count($config) > 0 ? $config : null);
+    }
+
     /**
      * Perform post-registration booting of services.
      */
@@ -27,9 +50,10 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
 
             $adapter = new GoogleStorageAdapter($storageClient, $bucket, $pathPrefix, $storageApiUri);
 
-            return new Filesystem($adapter);
+            return $this->createFilesystem($adapter, $config);
         });
     }
+
 
     /**
      * Register bindings in the container.

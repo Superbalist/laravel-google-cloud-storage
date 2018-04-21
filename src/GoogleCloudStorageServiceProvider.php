@@ -12,11 +12,13 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
 {
     /**
      * Perform post-registration booting of services.
+     *
+     * @param  string $config
      */
-    public function boot()
+    public function boot(string $config = '')
     {
         $factory = $this->app->make('filesystem'); /* @var FilesystemManager $factory */
-        $factory->extend('gcs', function ($app, $config) {
+        $factory->extend('gcs' . $config, function ($app, $config) {
             $storageClient = new StorageClient([
                 'projectId' => $config['project_id'],
                 'keyFilePath' => array_get($config, 'key_file'),

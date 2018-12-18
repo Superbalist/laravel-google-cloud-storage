@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.0 - 2018-12-18
+
+* This Allows optionally configuring `visibility`, `disable_asserts` and `url` options on the filesystem
+* Add optional caching layer around the adapter
+
+## 2.0.0 - 2018-02-07
+
+* Allow superbalist/flysystem-google-storage ^7.0
+
 ## 1.0.5 - 2018-02-02
 
 * Allow superbalist/flysystem-google-storage ^6.0

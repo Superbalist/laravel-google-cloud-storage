@@ -33,6 +33,27 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
         return new Filesystem($adapter, count($config) > 0 ? $config : null);
     }
 
+     /**
+     * Create a cache store instance.
+     *
+     * @param  mixed  $config
+     * @return \League\Flysystem\Cached\CacheInterface
+     *
+     * @throws \InvalidArgumentException
+     */
+    protected function createCacheStore($config)
+    {
+        if ($config === true) {
+            return new MemoryStore;
+        }
+
+        return new Cache(
+            $this->app['cache']->store($config['store']),
+            $config['prefix'] ?? 'flysystem',
+            $config['expire'] ?? null
+        );
+    }
+
     /**
      * Perform post-registration booting of services.
      */

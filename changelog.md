@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.1 - 2019-02-11
+
+* Fix `Call to undefined method Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::createCacheStore()` bug when using caching
+
 ## 2.1.0 - 2018-12-18
 
 * This Allows optionally configuring `visibility`, `disable_asserts` and `url` options on the filesystem

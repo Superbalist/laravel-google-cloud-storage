@@ -51,8 +51,8 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
 
         return new Cache(
             $this->app['cache']->store($config['store']),
-            $config['prefix'] ?? 'flysystem',
-            $config['expire'] ?? null
+            array_get($config, 'prefix', 'flysystem'),
+            array_get($config, 'expire')
         );
     }
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.2 - 2019-02-13
+
+* Replace null coalescing operator with backwards compatible laravel `array_get`
+
 ## 2.1.1 - 2019-02-11
 
 * Fix `Call to undefined method Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::createCacheStore()` bug when using caching

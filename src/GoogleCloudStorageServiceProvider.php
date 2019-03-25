@@ -65,7 +65,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
         /* @var FilesystemManager $factory */
         $factory->extend('gcs', function ($app, $config) {
             $storageClient = $this->createClient($config);
-            
+
             $bucket = $storageClient->bucket($config['bucket']);
             $pathPrefix = array_get($config, 'path_prefix');
             $storageApiUri = array_get($config, 'storage_api_uri');
@@ -90,14 +90,13 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
                 'keyFilePath' => $config['key_file'],
             ]);
         }
-        
+
         return new StorageClient([
-                'projectId' => $config['project_id'],
-                'keyFile' => array_merge([
-                    "project_id" => $config['project_id']
-                ], $config['key_file'])
-            ]);
-        }
+            'projectId' => $config['project_id'],
+            'keyFile' => array_merge([
+                "project_id" => $config['project_id']
+            ], $config['key_file'])
+        ]);
     }
 
     /**

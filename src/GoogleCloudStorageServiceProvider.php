@@ -84,10 +84,10 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
      */
     private function createClient($config)
     {
-        if (is_string($config['key_file'])) {
+        if (is_string(array_get($config, 'key_file'))) {
             return new StorageClient([
                 'projectId' => $config['project_id'],
-                'keyFilePath' => $config['key_file'],
+                'keyFilePath' => array_get($config, 'key_file'),
             ]);
         }
 
@@ -95,7 +95,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
             'projectId' => $config['project_id'],
             'keyFile' => array_merge([
                 "project_id" => $config['project_id']
-            ], $config['key_file'])
+            ], array_get($config, 'key_file', [])
         ]);
     }
 

@@ -95,7 +95,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
             'projectId' => $config['project_id'],
             'keyFile' => array_merge([
                 "project_id" => $config['project_id']
-            ], array_get($config, 'key_file', [])
+            ], array_get($config, 'key_file', []))
         ]);
     }
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.0 - 2019-04-15
+
+* Allow users to authenticate to Google Cloud Storage directly with env variable without using a json file
+
 ## 2.1.2 - 2019-02-13
 
 * Replace null coalescing operator with backwards compatible laravel `array_get`

@@ -92,7 +92,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
             ]);
         }
 
-        if (!is_array($keyFile)) {
+        if (! is_array($keyFile)) {
             $keyFile = [];
         }
         return new StorageClient([

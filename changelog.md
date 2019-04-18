@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.1 - 2019-04-18
+
+* Fix #57: `ErrorException thrown with message "array_merge(): Argument #2 is not an array"` when defining service account
+
 ## 2.2.0 - 2019-04-15
 
 * Allow users to authenticate to Google Cloud Storage directly with env variable without using a json file

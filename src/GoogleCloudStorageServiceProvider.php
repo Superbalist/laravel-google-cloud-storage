@@ -93,7 +93,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
         }
         return new StorageClient([
             'projectId' => $config['project_id'],
-            'keyFilePath' => $keyFile,
+            'keyFilePath' => $keyFile
         ]);
     }
 

@@ -32,7 +32,8 @@ Add a new disk to your `filesystems.php` config
 'gcs' => [
     'driver' => 'gcs',
     'project_id' => env('GOOGLE_CLOUD_PROJECT_ID', 'your-project-id'),
-    'key_file' => env('GOOGLE_CLOUD_KEY_FILE', null), // optional: /path/to/service-account.json
+    'key_file_path' => env('GOOGLE_CLOUD_KEY_FILE', null), // optional: /path/to/service-account.json
+    'key_file' => null, // optional: Array of data that substitutes the .json file (see below)
     'bucket' => env('GOOGLE_CLOUD_STORAGE_BUCKET', 'your-bucket'),
     'path_prefix' => env('GOOGLE_CLOUD_STORAGE_PATH_PREFIX', null), // optional: /default/path/to/apply/in/bucket
     'storage_api_uri' => env('GOOGLE_CLOUD_STORAGE_API_URI', null), // see: Public URLs below
@@ -44,7 +45,7 @@ Add a new disk to your `filesystems.php` config
 
 The Google Client uses a few methods to determine how it should authenticate with the Google API.
 
-1. If you specify a path in the key `key_file` in  disk config, that json credentials file will be used.
+1. If you specify a path in the key `key_file_path` in  disk config, that json credentials file will be used.
 2. If the `GOOGLE_APPLICATION_CREDENTIALS` env var is set, it will use that.
    ```php
    putenv('GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json');

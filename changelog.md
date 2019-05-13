@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.2.2 - 2019-05-13
+
+* Fix #60: `json key is missing the type field`.
+
+* Support key_file_path and key_file separately (conforms with GCS class)
+
+* Fix issue where in every case a key_file was given, breaking built-in service accounts
+
+* Updated README with key_file, and key_file_path
+
 ## 2.2.1 - 2019-04-18
 
 * Fix #57: `ErrorException thrown with message "array_merge(): Argument #2 is not an array"` when defining service account

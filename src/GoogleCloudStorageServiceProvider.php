@@ -18,8 +18,8 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
     /**
      * Create a Filesystem instance with the given adapter.
      *
-     * @param  \League\Flysystem\AdapterInterface $adapter
-     * @param  array $config
+     * @param  \League\Flysystem\AdapterInterface                   $adapter
+     * @param  array                                                $config
      * @return \League\Flysystem\FlysystemInterfaceAdapterInterface
      */
     protected function createFilesystem(AdapterInterface $adapter, array $config)
@@ -38,7 +38,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
     /**
      * Create a cache store instance.
      *
-     * @param  mixed $config
+     * @param  mixed                                   $config
      * @return \League\Flysystem\Cached\CacheInterface
      *
      * @throws \InvalidArgumentException
@@ -46,7 +46,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
     protected function createCacheStore($config)
     {
         if ($config === true) {
-            return new MemoryStore;
+            return new MemoryStore();
         }
 
         return new Cache(
@@ -62,7 +62,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
     public function boot()
     {
         $factory = $this->app->make('filesystem');
-        /* @var FilesystemManager $factory */
+        // @var FilesystemManager $factory
         $factory->extend('gcs', function ($app, $config) {
             $storageClient = $this->createClient($config);
 
@@ -79,25 +79,37 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
     /**
      * Create a new StorageClient
      *
-     * @param  mixed $config
+     * @param  mixed                               $config
      * @return \Google\Cloud\Storage\StorageClient
      */
     private function createClient($config)
     {
-        $keyFile = array_get($config, 'key_file');
-        if (is_string($keyFile)) {
+        //Get the keyfile config from the config/filesystems.php
+        $keyFilePath = array_get($config, 'key_file_path');
+
+        if (is_string($keyFilePath) && !empty($keyFilePath)) {
             return new StorageClient([
                 'projectId' => $config['project_id'],
-                'keyFilePath' => $keyFile,
+                'keyFilePath' => $keyFilePath,
             ]);
         }
 
-        if (! is_array($keyFile)) {
-            $keyFile = [];
+        //Get the keyFile array from the disk in config/filesystems.php
+        $keyFile = array_get($config, 'key_file');
+
+        if (is_array($keyFile) && !empty($keyFile)) {
+            return new StorageClient([
+                'projectId' => $config['project_id'],
+            ]);
         }
+
+        //If we don't have a keyFilePath or keyFile let
+        //the Google\Cloud\Storage\StorageClient try
+        //to authticate for us via Google App or
+        //Google Compute Engine instances or
+        //GOOGLE_APPLICATION_CREDENTIALS
         return new StorageClient([
             'projectId' => $config['project_id'],
-            'keyFile' => array_merge(["project_id" => $config['project_id']], $keyFile)
         ]);
     }
 
@@ -106,6 +118,5 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Superbalist\LaravelGoogleCloudStorage;
+namespace ItDevgroup\LaravelGoogleCloudStorage;
 
 use Illuminate\Support\Arr;
 use Illuminate\Filesystem\Cache;
@@ -11,7 +11,7 @@ use Google\Cloud\Storage\StorageClient;
 use League\Flysystem\Cached\CachedAdapter;
 use Illuminate\Filesystem\FilesystemManager;
 use League\Flysystem\Cached\Storage\Memory as MemoryStore;
-use Superbalist\Flysystem\GoogleStorage\GoogleStorageAdapter;
+use ItDevgroup\Flysystem\GoogleStorage\GoogleStorageAdapter;
 
 class GoogleCloudStorageServiceProvider extends ServiceProvider
 {

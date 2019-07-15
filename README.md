@@ -2,25 +2,17 @@
 
 A Google Cloud Storage filesystem for Laravel.
 
-[![Author](http://img.shields.io/badge/author-@superbalist-blue.svg?style=flat-square)](https://twitter.com/superbalist)
-[![Build Status](https://img.shields.io/travis/Superbalist/laravel-google-cloud-storage/master.svg?style=flat-square)](https://travis-ci.org/Superbalist/laravel-google-cloud-storage)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Packagist Version](https://img.shields.io/packagist/v/superbalist/laravel-google-cloud-storage.svg?style=flat-square)](https://packagist.org/packages/superbalist/laravel-google-cloud-storage)
-[![Total Downloads](https://img.shields.io/packagist/dt/superbalist/laravel-google-cloud-storage.svg?style=flat-square)](https://packagist.org/packages/superbalist/laravel-google-cloud-storage)
-
-This package is a wrapper bridging [flysystem-google-storage](https://github.com/Superbalist/flysystem-google-storage) into Laravel as an available storage disk.
-
 ## Installation
 
 ```bash
-composer require superbalist/laravel-google-cloud-storage
+composer require it-devgroup/laravel-google-cloud-storage
 ```
 
 If you are on Laravel 5.4 or earlier, then register the service provider in app.php
 ```php
 'providers' => [
     // ...
-    Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
+    ItDevgroup\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
 ]
 ```
 

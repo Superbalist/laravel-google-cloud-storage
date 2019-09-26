@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.2.2 - 2019-09-26
+
+* Add support for Laravel 6.x (@Mombuyish)
+
 ## 2.2.1 - 2019-04-18
 
 * Fix #57: `ErrorException thrown with message "array_merge(): Argument #2 is not an array"` when defining service account

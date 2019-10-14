@@ -99,6 +99,18 @@ For a custom domain (storage api uri), you will need to configure a CNAME DNS en
 
 Please see https://cloud.google.com/storage/docs/xml-api/reference-uris#cname for further instructions.
 
+### Temporary / Signed URLs
+
+With the latest adapter versions, you can easily generate a signed URLs for files that are not publicly visible by default.
+
+```php
+$disk = Storage::disk('gcs');
+$url = $disk->temporaryUrl('folder/my_file.txt', now()->addMinutes(30));
+>>> https://storage.googleapis.com/test-bucket/folder/my_file.txt?GoogleAccessId=test-bucket%40test-gcp.iam.gserviceaccount.com&Expires=1571151576&Signature=tvxN1OS1txkWAUF0cCR3FWK%seRZXtFu42%04%YZACYL2zFQxA%uwdGEmdO1KgsHR3vBF%I9KaEzPbl4b7ic2IWUuo8Jh3IoZFqdTQec3KypjDtt%02DGwm%OO6pWDVV421Yp4z520%o5oMqGBtV8B3XmjW2PH76P3uID2QY%AlFxn23oE9PBoM2wXr8pDXhMPwZNJ0FtckSc26O8PmfVsG7Jvln%CQTU57IFyB7JnNxz5tQpc2hPTHbCGrcxVPEISvdOamW3I%83OsXr5raaYYBPcuumDnAmrK%cyS9%Ky2fL2B2shFO2cz%KRu79DBPqtnP2Zf1mJWBTwxVUCK2jxEEYcXBXtdOszIvlI6%tp2XfVwYxLNFU
+```
+
+Please see https://cloud.google.com/storage/docs/access-control/signed-urls and https://laravel.com/docs/6.x/filesystem for more info.
+
 ## Usage
 
 ```php

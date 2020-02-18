@@ -26,7 +26,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
     {
         $cache = Arr::pull($config, 'cache');
 
-        $config = Arr::only($config, ['visibility', 'disable_asserts', 'url']);
+        $config = Arr::only($config, ['visibility', 'disable_asserts', 'url', 'metadata']);
 
         if ($cache) {
             $adapter = new CachedAdapter($adapter, $this->createCacheStore($cache));

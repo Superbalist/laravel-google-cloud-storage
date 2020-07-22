@@ -1,6 +1,6 @@
 <?php
 
-namespace Superbalist\LaravelGoogleCloudStorage;
+namespace wfhq\LaravelGoogleCloudStorage;
 
 use Illuminate\Support\Arr;
 use Illuminate\Filesystem\Cache;

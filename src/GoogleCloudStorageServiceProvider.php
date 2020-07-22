@@ -22,7 +22,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
      * @param  array $config
      * @return \League\Flysystem\FlysystemInterfaceAdapterInterface
      */
-    protected function createFilesystem(AdapterInterface $adapter, array $config)
+    public function createFilesystem(AdapterInterface $adapter, array $config)
     {
         $cache = Arr::pull($config, 'cache');
 
@@ -43,7 +43,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
      *
      * @throws \InvalidArgumentException
      */
-    protected function createCacheStore($config)
+    public function createCacheStore($config)
     {
         if ($config === true) {
             return new MemoryStore;
@@ -82,7 +82,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
      * @param  mixed $config
      * @return \Google\Cloud\Storage\StorageClient
      */
-    private function createClient($config)
+    public function createClient($config)
     {
         $keyFile = Arr::get($config, 'key_file');
         if (is_string($keyFile)) {

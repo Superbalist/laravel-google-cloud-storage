@@ -85,6 +85,14 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
     private function createClient($config)
     {
         $keyFile = Arr::get($config, 'key_file');
+        
+        if (is_null($keyFile)) {
+            return new StorageClient([
+                'projectId' => $config['project_id'],
+                'keyFilePath' => $keyFile,
+            ]);
+        }
+        
         if (is_string($keyFile)) {
             return new StorageClient([
                 'projectId' => $config['project_id'],

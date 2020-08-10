@@ -89,7 +89,6 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
         if (is_null($keyFile)) {
             return new StorageClient([
                 'projectId' => $config['project_id'],
-                'keyFilePath' => $keyFile,
             ]);
         }
         

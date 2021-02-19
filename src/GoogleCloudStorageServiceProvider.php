@@ -4,6 +4,8 @@ namespace ItDevgroup\LaravelGoogleCloudStorage;
 
 use Illuminate\Support\Arr;
 use Illuminate\Filesystem\Cache;
+use InvalidArgumentException;
+use League\Flysystem\Cached\CacheInterface;
 use League\Flysystem\Filesystem;
 use League\Flysystem\AdapterInterface;
 use Illuminate\Support\ServiceProvider;
@@ -12,15 +14,16 @@ use League\Flysystem\Cached\CachedAdapter;
 use Illuminate\Filesystem\FilesystemManager;
 use League\Flysystem\Cached\Storage\Memory as MemoryStore;
 use ItDevgroup\Flysystem\GoogleStorage\GoogleStorageAdapter;
+use League\Flysystem\FlysystemInterfaceAdapterInterface;
 
 class GoogleCloudStorageServiceProvider extends ServiceProvider
 {
     /**
      * Create a Filesystem instance with the given adapter.
      *
-     * @param  \League\Flysystem\AdapterInterface $adapter
+     * @param AdapterInterface $adapter
      * @param  array $config
-     * @return \League\Flysystem\FlysystemInterfaceAdapterInterface
+     * @return FlysystemInterfaceAdapterInterface
      */
     protected function createFilesystem(AdapterInterface $adapter, array $config)
     {
@@ -39,9 +42,9 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
      * Create a cache store instance.
      *
      * @param  mixed $config
-     * @return \League\Flysystem\Cached\CacheInterface
+     * @return CacheInterface
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     protected function createCacheStore($config)
     {
@@ -51,8 +54,8 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
 
         return new Cache(
             $this->app['cache']->store($config['store']),
-            array_get($config, 'prefix', 'flysystem'),
-            array_get($config, 'expire')
+            Arr::get($config, 'prefix', 'flysystem'),
+            Arr::get($config, 'expire')
         );
     }
 
@@ -67,8 +70,8 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
             $storageClient = $this->createClient($config);
 
             $bucket = $storageClient->bucket($config['bucket']);
-            $pathPrefix = array_get($config, 'path_prefix');
-            $storageApiUri = array_get($config, 'storage_api_uri');
+            $pathPrefix = Arr::get($config, 'path_prefix');
+            $storageApiUri = Arr::get($config, 'storage_api_uri');
 
             $adapter = new GoogleStorageAdapter($storageClient, $bucket, $pathPrefix, $storageApiUri);
 
@@ -84,7 +87,7 @@ class GoogleCloudStorageServiceProvider extends ServiceProvider
      */
     private function createClient($config)
     {
-        $keyFile = array_get($config, 'key_file');
+        $keyFile = Arr::get($config, 'key_file');
         if (is_string($keyFile)) {
             return new StorageClient([
                 'projectId' => $config['project_id'],

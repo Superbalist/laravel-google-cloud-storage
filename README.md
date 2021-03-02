@@ -126,5 +126,5 @@ $url = $disk->url('folder/my_file.txt');
 $disk->setVisibility('folder/my_file.txt', 'public');
 
 
-// See https://laravel.com/docs/5.3/filesystem for full list of available functionality
+// See https://laravel.com/docs/8.x/filesystem for full list of available functionality
 ```
